@@ -1,5 +1,7 @@
 /// <reference types="web-bluetooth" />
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import 'rxjs/Rx';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,26 @@ import { Component } from '@angular/core';
 export class AppComponent {
   characteristic: BluetoothRemoteGATTCharacteristic;
 
-  constructor() {
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.form = fb.group({
+      color: ''
+    });
+
+    this.form.controls['color']
+      .valueChanges
+      .map(hex => this.hexToRgb(hex))
+      .subscribe(color => this.color(color.r, color.g, color.b));
+  }
+
+  private hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
   }
 
   async connect() {
