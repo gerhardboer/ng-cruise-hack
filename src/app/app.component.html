@@ -6,19 +6,9 @@
     <button class="btn--green" (click)="turnOn()">Lights!!</button>
     <button class="btn--red" (click)="turnOff()">Darkness</button>
 
-    <br/>
+    <form [formGroup]="form">
+      <input type="color" formControlName="color">
+    </form>
 
-    <label for="red">Red</label>
-    <input #red id="red"/>
-    <br/>
-    <label for="blue">Blue</label>
-    <input #blue id="blue"/>
-    <br/>
-
-    <label for="green">Green</label>
-    <input #green id="green"/>
-    <br/>
-
-    <button class="btn--yellow" (click)="color(red.value, green.value, blue.value)">color</button>
   </div>
 </div>
