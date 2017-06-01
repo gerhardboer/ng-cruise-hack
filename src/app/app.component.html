@@ -1,5 +1,24 @@
 <div class="card g--10 m--1">
   <div class="tile no-pad">
-    <h3> Stuff </h3>
+    <h3> Web bluetooth light </h3>
+
+    <button class="btn--blue" (click)="connect()">Connect and power</button>
+    <button class="btn--green" (click)="turnOn()">Lights!!</button>
+    <button class="btn--red" (click)="turnOff()">Darkness</button>
+
+    <br/>
+
+    <label for="red">Red</label>
+    <input #red id="red"/>
+    <br/>
+    <label for="blue">Blue</label>
+    <input #blue id="blue"/>
+    <br/>
+
+    <label for="green">Green</label>
+    <input #green id="green"/>
+    <br/>
+
+    <button class="btn--yellow" (click)="color(red.value, green.value, blue.value)">color</button>
   </div>
 </div>
